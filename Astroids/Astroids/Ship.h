@@ -110,6 +110,7 @@ private:
 	double weapon_damage;
 	double life;
 	double cooldown;
+	double score;
 };
 class Astroid : public Object {
 public:

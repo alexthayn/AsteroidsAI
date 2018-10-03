@@ -191,6 +191,15 @@ void PrintText(string font, string text, float centerX, float centerY, float sca
 	glPopMatrix();
 }
 
+void PrintToScreen(string text, float centerX, float centerY) {
+	glRasterPos2d(centerX, centerY);
+	int len, i;
+	len = (int)strlen(text.c_str());
+	for (i = 0; i < len; i++) {
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, text[i]);
+	}
+}
+
 void DrawRectangle(
 		float x1, float y1,
 		float x2, float y2,

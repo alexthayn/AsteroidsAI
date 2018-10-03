@@ -9,6 +9,7 @@
 #include "rapidjson\writer.h"
 
 SceneManager manager;
+int totalScore;
 
 Value Point::encode(MemoryPoolAllocator<CrtAllocator>& allocator) {
 	Value value(kObjectType);
@@ -40,6 +41,9 @@ void Object::Update(double dt) {
 	heading += deltaHeading * dt;
 }
 void Object::Collide(const Object* object) {
+	/*if (object->getType() == AstroidType) {
+		totalScore += 1;
+	}*/
 	manager.DeleteObject(this);
 }
 void Object::Draw() {
@@ -60,7 +64,7 @@ Bullet::Bullet(Point position, Point delta) :
 	timeToLive(.5) {}
 void Bullet::Collide(const Object* other) {
 	Object::Collide(other);
-}
+ }
 Value Bullet::encode(MemoryPoolAllocator<>& allocator) {
 	Value value(kObjectType);
 	value.AddMember("pos", position.encode(allocator), allocator);
@@ -179,10 +183,11 @@ void Ship::Update(double dt) {
 		if (speed > accel_rate) {
 			delta /= (speed / accel_rate);
 		}
-		//Ship accel
+		//Change image on acceleration
 		sprite.image = "img/ship2.png";
 	}
 	else {
+		//Change image back when not accelerating
 		sprite.image = "img/ship1.png";
 	}
 	deltaHeading *= 0;
@@ -196,7 +201,7 @@ void Ship::Update(double dt) {
 		//TODO: Create a bullet
 		manager.AddObject(new Bullet(position + (Vector(heading) * .075), delta + (Vector(heading) * bullet_speed)));
 		cooldown = weapon_cooldown;
-	}6
+	}
 	cooldown -= dt;
 	timeAlive += dt;
 }
@@ -235,12 +240,17 @@ Value Astroid::encode(MemoryPoolAllocator<>& allocator) {
 objType Astroid::getType() const { return AstroidType; }
 
 SceneManager::SceneManager() : Player1(1, true), Player2(1,false) {
-	for (int i = 0; i < 5; i++) {
+	//Add asteroids to game
+	for (int i = 0; i < 1; i++) {
 		SceneManager::AddObject(new Astroid(Point(rand() / (double)RAND_MAX * 2.0 - 1, rand() / (double)RAND_MAX * 2.0 - 1),
 			Point(rand() / (double)RAND_MAX * 2.0 - 1, rand() / (double)RAND_MAX * 2.0 - 1)*.1, .125));
 	}
+	//Add player one
 	manager.AddObject(&Player1);
+	//Add player two
 	manager.AddObject(&Player2);
+
+	//Connect players
 	printf("Waiting for Player 1 to connect...\n");
 	Player1Socket = network.CreateConnection("30000");
 	printf("Player 1 Connected!\n");
@@ -293,6 +303,9 @@ void SceneManager::Update() {
 		obj->Update(dt);
 	}
 
+	PrintToScreen("Score: ", .9, .9);
+	PrintToScreen("" + totalScore, .96, .9);
+
 	for (Object* obj : scene) {
 		for (Object* other : scene) {
 			if (obj <= other) continue;
@@ -324,7 +337,6 @@ void SceneManager::Update() {
 	Player2.rightCommand = doc["right"].GetBool();
 	Player2.leftCommand = doc["left"].GetBool();
 	Player2.shootCommand = doc["shoot"].GetBool();
-
 }
 void SceneManager::Draw()
 {

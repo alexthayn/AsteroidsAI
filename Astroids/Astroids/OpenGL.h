@@ -14,6 +14,7 @@ void RunOpenGL(int &argc, char** argv,
 void AttachKeyHandle(char key, bool* value);
 
 void PrintText(std::string fontImg, std::string text, float centerX, float centerY, float scale = 1.0f);
+void PrintToScreen(std::string text, float centerX, float centerY);
 void DrawRectangle(float x1, float y1, float x2, float y2);
 void DrawRectangle(float x1, float y1, float x2, float y2, std::string texture, bool useColor=false, float tx1=0.0f, float ty1=0.0f, float tx2 = 1.0f, float ty2 = 1.0f);
 void DrawTriangle(float x1, float y1, float x2, float y2, float x3, float y3);

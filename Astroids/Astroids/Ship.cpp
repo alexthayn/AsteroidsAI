@@ -86,14 +86,14 @@ Ship::Ship(int type, bool player1) : isPlayer1(player1) {
 	case 0: //Sting ship
 		accel_rate = 5;
 		turn_rate = 1.8;
-		weapon_cooldown = .05;
+		weapon_cooldown = .5;
 		weapon_damage = .09;
 		life = .5;
 		break;
 	case 1: //Base Ship
 		accel_rate = .5/3.0;
 		turn_rate = 2;
-		weapon_cooldown = .05;
+		weapon_cooldown = .1;
 		weapon_damage = 1;
 		life = 1;
 		break;
@@ -303,8 +303,8 @@ void SceneManager::Update() {
 		obj->Update(dt);
 	}
 
-	PrintToScreen("Score: ", .9, .9);
-	PrintToScreen("" + totalScore, .96, .9);
+	//PrintToScreen("Score: ", .9, .9);
+	//PrintToScreen("" + totalScore, .96, .9);
 
 	for (Object* obj : scene) {
 		for (Object* other : scene) {

@@ -124,7 +124,7 @@ std::string NetworkManager::Recv(int connection) {
 	while (!messageFound) {
 		while (_recvBuffer[connection].length() == 0) {
 			int size = recv(_clientSockets[connection], recvbuf, recvbuflen-1, 0);
-			if (size == 0) return output;
+			if (size <= 0) return output;
 			recvbuf[size] = 0;
 			_recvBuffer[connection] += recvbuf;
 		}

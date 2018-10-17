@@ -1,2 +1,12 @@
-﻿  Ship.cpp
+﻿  Main.cpp
+  Network.cpp
+c:\users\alex\source\repos\asteroidsai_athayn\astroids\astroids\network.cpp(50): warning C4101: 'iSendResult': unreferenced local variable
+  OpenGL.cpp
+c:\users\alex\source\repos\asteroidsai_athayn\astroids\astroids\opengl.cpp(188): warning C4018: '<': signed/unsigned mismatch
+  Ship.cpp
+  Generating Code...
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'C:\Users\Alex\source\repos\AsteroidsAI_AThayn\Astroids\Debug\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'C:\Users\Alex\source\repos\AsteroidsAI_AThayn\Astroids\Debug\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'C:\Users\Alex\source\repos\AsteroidsAI_AThayn\Astroids\Debug\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'C:\Users\Alex\source\repos\AsteroidsAI_AThayn\Astroids\Debug\SOIL.pdb'; linking object as if no debug info
   Astroids.vcxproj -> C:\Users\Alex\source\repos\AsteroidsAI_AThayn\Astroids\Debug\Asteroids.exe
